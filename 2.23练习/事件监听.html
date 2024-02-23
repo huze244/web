@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <button>按钮</button>
+    <button class="q">取消绑定
+    </button>
+</head>
+<body>
+    <script>
+    function a() {
+        alert('按钮被点击了！')
+    }   
+        //dom对象.addEvenListener(触发事件,执行函数,处理阶段'true为捕获模型,不加为冒泡模型')
+        //element.addEventListener(eventType, eventHandler, true);
+        var button = document.querySelector('button')
+        button.addEventListener('click', a());
+        var btn = document.querySelector('.q')
+        btn.removeEventListener('click',a())
+    </script>
+</body>
+</html>

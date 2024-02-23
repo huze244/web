@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        span{
+            background-color: red;
+            color: aliceblue;
+            font-size: large;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            line-height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            left: 0;
+        }
+    </style>
+    <p></p>
+    <script>
+        /*
+            思路
+            1、没有干扰的情况下见到有一个字符自动向下掉落
+                a、创建一个标签
+                    Ⅰ、创建标签dom对象
+                    Ⅱ、随机生成内容 可以使用字符串列出可以用字符 再配合随机数
+                        挑选一个数字
+                    Ⅲ、随机设置dom的left的值
+                    Ⅳ、使用定时器反复控制元素的top值
+                    Ⅴ、如果到了底部销毁 重新再来一次
+                b、控制标签向下掉落                    
+            2、键盘按下 如果跟字符型相同 销毁 重新实现向下掉落 得分+1
+        */
+       //生成随机字符
+       var timer;//保存定时器
+       var char;//
+       var spanDom;
+       var sorce = 0;
+       function makeChar(){
+            var str = '23456789qwerasdfghjkmnbvcxz'
+            //生成随机下标
+            var index = Math.floor(Math.random()*str.length)
+            return str[index];
+       }
+       //实现创建标签 并且向下掉落
+       function creatspan(){
+        //创建span标签
+        spanDom = document.createElement('span');
+        document.querySelector('body').appendChild(spanDom)
+        //生成随机字符 
+        char = makeChar()
+        spanDom.innerHTML = char;
+        var left = Math.floor(Math.random()*(window.innerWidth-spanDom.clientWidth));
+        //设置字符距离左侧的距离
+        spanDom.style.left = left+'px'
+        timer = setInterval(function(){
+            //获取当前span标签的top值
+            var height = parseInt(getComputedStyle(spanDom).top)
+            // 是否已经到达底部
+            if(height + spanDom.clientHeight >= window.innerHeight-5){
+                clearInterval(timer);
+                document.querySelector('body').removeChild(spanDom);
+                creatspan();
+            }else{
+                spanDom.style.top = height + 5 + 'px'
+            }
+        },30)
+       }
+       creatspan();
+       //键盘按下
+       document.onkeydown = function(e){
+        if(e.key == char){
+            clearInterval(timer);
+            console.log(spanDom);
+            document.querySelector('body').removeChild(spanDom);
+            creatspan();
+            sorce++;
+            document.querySelector('p').innerHTML = `得分：${sorce}`
+        }
+       }
+    </script>
+</body>
+</html>

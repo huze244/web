@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button></button>
+    <button></button>
+</body>
+<script>
+    var btn = document.querySelectorAll('button')
+    for(var i=1;i<2;i++){
+           (function (index){ btn[index].onclick = function(){
+                console.log(index)}
+            })(i)
+    }
+</script>
+</html>

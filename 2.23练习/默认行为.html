@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- html标签中a标签与form标签 具备一个默认的行为 a标签 一定会跳转 form标签 会提交数据也会跳转 -->
+    <a href="javascript:;">百度</a>
+    <!-- 动态绑定 事件处理程序中返回false -->
+    <a href="http://www.baidu.com" class="bd">百度</a>
+    <script>
+        document.querySelector('.bd').onclick = function(){
+            return false;
+        }
+    </script>
+    <a href="http://www.baidu.com" class="bd2">百度</a>
+    <script>
+        //事件下event.preventDefault()方法调用阻止默认行为
+        document.querySelector('.bd2').onclick = function(){
+            event.preventDefault();
+        }
+    </script>
+
+    <form action="">
+        <button>提交</button>
+    </form>
+    <script>
+        document.querySelector('form').onsubmit = function(){
+            event.preventDefault();
+        }
+    </script>
+</body>
+</html>
