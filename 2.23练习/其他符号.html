@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // \ 转义符
+        // | 或者
+        // () 从多个直接量中选择一个,分组
+        console.log(/(a|b)c/.test('ac'));
+        // 括号可以实现反向引用功能 可以使用前面规则匹配到的值
+        // 首先使用\d 匹配到数字2满足要求 就将数字2保存到一个盒子（编号是1）
+        // 正则每次在匹配内容的时候 尽可能多的找匹配条件
+
+        // []字符串用中括号括起来，表示匹配其中的任一字符
+        // [abcdef] 等价于 a|b|c|d|e|f
+        
+        // - 到ASCII连续才可以
+
+    </script>
+</body>
+</html>

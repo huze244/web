@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        //写正则表达式的过程中 如果只使用一些固定内容进行匹配 过于固定
+        //所以设计一些符号可以表示某些字符
+        // \d匹配数字
+        var str = 'hello';
+        /*正则表达式在执行过程中会使用字符串第一个字符来验证是否满足规则
+          只要有一个满足就返回true  
+        */
+        console.log(/\d/.test(str));
+        // \D 匹配任意非数字的字符
+        console.log(/\D/.test('123a'));
+        // \w 匹配任意的数字、字符、下划线
+        console.log(/\w/.test('123!@#'));
+        // \W 匹配除了数字、字符、下划线的任意单字符
+
+        // \s 匹配空格
+
+        // \S 匹配非空格
+
+        // .匹配除了换行以外的任意单个字符
+
+
+
+    </script>
+</body>
+</html>
