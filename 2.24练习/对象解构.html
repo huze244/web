@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let person = {
+            name:'张三',
+            id : '20',
+            girl :'李四',
+            family :{
+                dad:'王五',
+                mom:'赵六',
+                name:111
+            }
+        }
+        let v = {...person}
+        console.log(v);
+        let i = {name,id,girl} = person;
+        console.log(i);
+        let m = 20;
+        let n;
+        [m,n] = [n,m];
+        console.log(m,n);
+        //合并运算符 一旦调用函数的时候 系统会自动将实参组合成为一个数组
+        
+    </script>
+        
+</body>
+</html>

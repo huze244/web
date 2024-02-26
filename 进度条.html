@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style="width: 400px; height: 50px;border: 1px solid black;">
+        <div style="height: 50px; background-color: green;width: 0;" class="sub"></div>
+    </div>
+    <button class="start">开始</button>
+    <button class="pause">暂停</button>
+    <button class="end">停止</button>
+    <script>
+        let sub = document.querySelector('.sub')
+        let start = document.querySelector('.start')
+        let pause = document.querySelector('.pause')
+        let width = 0;
+        let timer;
+        start.addEventListener('click',function(){
+            timer = setInterval(function(){
+                width += 10;
+                sub.style.width = (width + 'px');
+                if(sub.style.width == document.querySelectorAll('div')[0].style.width){
+                    clearInterval(timer)
+                } 
+            },50)
+        pause.addEventListener('click',function(){
+                clearInterval(timer)
+        })    
+        })
+
+    </script>
+</body>
+</html>
