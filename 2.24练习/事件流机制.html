@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //1、事件流机制
+                /*
+                事件流属于浏览器端处理事件的传播方向
+                因为标签存在嵌套关系 当事件触发在某一个标签上时 也可以看做触发到
+                标签的上级元素，所以事件需要传播 事件传播方向分两种 从内向外 捕获模型
+                从外向内 冒泡模型
+                */
+        /*
+        事件冒泡
+            事件源触发事件后上升到上级元素触发同名事件
+            阻止事件冒泡 event.stopPropagation();
+        事件委托
+            本质原理就是借助于事件冒泡实现
+            需要绑定子元素上事件 为父元素绑定 一旦子元素触发事件 可以在父元素上捕获到
+            借助于event.target 区分进行不同处理
+        阻止默认行为 a标签与form标签一旦处罚行为 默认就会跳转
+        event.preventDefault();
+        */
+    </script>
+</body>
+</html>
