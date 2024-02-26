@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+        普通函数直接调用
+        */
+        function fn(){
+            console.log(this);
+        }
+    </script>
+    <!-- 
+        1、行内绑定事件 直接在属性值中使用this 表示的是dom对象
+        2、属性值使用函数调用 函数中this表示的是window对象
+     -->
+     <button onclick="console.log(this)">按钮</button>
+     <button onclick="fn2()"></button>
+    <script>
+        function fn2() {
+            let i = ()=>{console.log(this)
+        }
+        i();
+    }
+    </script>
+    <!-- 
+        3、动态绑定 事件监听 事件处理程序函数 都表示事件源的的dom对象
+     -->
+     <!-- 
+        4、定时器 延时器
+     -->
+     <!-- 
+        5、自定义对象
+        在函数中，this 的值取决于函数的调用方式。
+        如果函数是作为对象的方法调用的，则 this 指向调用该方法的对象；
+        如果函数是独立调用的，则 this 指向全局对象
+      -->
+      <script>
+        const fn1 = ()=>{
+                console.log(this);
+        }
+        let obj = {
+            fn : fn1
+        }
+    /* 
+        6、箭头函数自己没有this 哪个function包着它继承那个function的this
+        没有function包它就是window    
+    */
+        obj.fn;
+      </script>
+
+</body>
+</html>

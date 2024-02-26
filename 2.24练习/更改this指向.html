@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let obj = {
+
+        }
+        function fn(name,age){
+            this.name = name;
+            this.age = age;
+        }
+        fn.call(obj,'1','2');
+        console.log(obj);
+        fn.apply(obj,['3','4']);
+        console.log(obj);
+        let fn2 = fn.bind(obj)
+        fn2(5,6);
+        console.log(obj);
+
+        
+
+        /* 
+        1、call 语法 函数名称.call(修改的对象,顺序传递函数调用的参数) 会将函数执行起来的
+        fn.call(obj)
+        当使用call方法就好像先将函数体中的this修改为修改的对象
+        2、apply 语法 函数名称.apply(修改的对象,[传递函数调用的参数])
+        3、bind 语法 函数名称.bind(修改的对象) 但是bind方法不执行函数 
+        只是修改函数体中的this指向
+        */
+    </script>
+</body>
+</html>

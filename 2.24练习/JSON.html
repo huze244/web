@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        /* 
+            json就是一种数据格式(字符串)
+            前后端分离 前端使用js语言 后端使用不确定
+            数据交互(登录功能需要将手机号与验证码发给后端)
+            前后端数据格式不一致不能解析js中对象
+            所以为了方便数据交互 设计一种统一格式 
+            设计出来的就是json格式(早期使用xml格式)
+            json格式与平常所写的数组对象一模一样 只是一个字符串格式
+            json格式 表示对象的时候属性名称使用引号 最后一个值不要使用逗号
+        */
+       let str = `{
+        "mobile" : "1852022222"
+       }`
+        /*
+            将JSON格式转换为内置数据类型 以后只要使用该函数报错存在JSON
+            就是JSON格式有误
+        */
+        console.log(JSON.parse(str));
+        //将内置数据类型转化为JSON格式的字符串
+        console.log(JSON.stringify({a:1,b:2,c:3}))
+    </script>
+</body>
+</html>

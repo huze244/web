@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+            深浅拷贝 就是变量赋值问题
+            浅拷贝：就是直接赋值 其中一个变量修改 另外一个变量也会改变
+            let a = obj;
+            深拷贝:将原数据一模一样复制一份出来 两个变量相互独立实现深拷贝做法
+            1、JSON格式
+            2、自己封装递归函数
+        */
+       let obj = {
+            name : '坤坤',
+            like : ['唱','跳','rap']
+       }
+       function DeepCopy(data){
+            //深拷贝是针对引用类型 所以要求data一定是数组或者对象
+            let dataType = Object.prototype.toString.call(data).slice(8,-1);
+            //验证是否满足要求的类型
+            if (dataType != 'Array' && dataType != 'Object'){
+                return data;
+            }
+            let result = dataType == 'Array' ? [] : {};
+            //data可能是数组可能是字符串 但是for in语句两种结构都可以遍历
+            for(let key in data){
+                let keyType = Object.prototype.toString.call(data[key]).slice(8,-1);
+                if(data[key]!= 'Array' && data[key] != 'Object'){
+                    result[key] = data[key]
+                }else{
+                    result[key] = DeepCopy(data[key])
+                }
+            }
+            return result;
+       }
+
+       let obj1 = DeepCopy(obj);
+       obj.name = '鸡哥'
+       console.log(obj);
+       
+       console.log(obj1);
+       
+    </script>
+</body>
+</html>
