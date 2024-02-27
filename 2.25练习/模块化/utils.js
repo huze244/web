@@ -1,5 +1,6 @@
 // 默认导出  语法  export default 导出的数据
 // 具名导出  export let/const/var 名称 = 数据
+ 
 function add(a, b) {
   return a + b;
 }
