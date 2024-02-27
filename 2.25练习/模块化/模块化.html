@@ -8,7 +8,10 @@
 <body>
     
 
-    <script src="./utils.js" type="module"></script>
+    <script type="module">
+        import add from './utils.js'
+        console.log(add.num);  
+    </script>
 
     <script>
         /* 
@@ -32,7 +35,6 @@
             1、默认导入
             2、具名导入
         */
-        console.log(add.num);
         
 
 
