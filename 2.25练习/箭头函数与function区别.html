@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 箭头函数与function区别
+            1、没有arguments
+            2、没有this
+            3、没有原型 不能new
+        */
+       /* 结构赋值 
+            对象解构: let{属性名1,属性名称:别名} = 对象
+            数组解构:按照顺序赋值 let [顺序设置元素对应的变量] = 数组
+            function fn({a}){
+                //调用函数 系统自动执行 let{a} = {a:1,b:2}
+                console.log(a)
+            }
+            fn({a:1,b:2})
+       */
+        /* 展开合并运算符
+            在函数形参里为合并
+            其他位置平铺展开
+        */
+       /*this指向
+       1、常见this指向
+            1、普通函数调用 指window
+            2、行内绑定
+                1、直接在属性上使用this 表示的是dom对象
+                2、调用函数 函数中this 表示的window
+            3、动态绑定事件监听 指向dom对象
+            4、定时器延时器 指向window
+            5、自定义对象 谁在调用就是谁
+            在function中this不是固定的 有可能会改变(因为function中可能会嵌套function)
+        2、箭头函数this: 虽然自己没有但是可以使用上下文所提供的this
+        3、修改this指向
+            fn.call()(对象,...函数调用参数) call方法会将fn执行起来
+            fn.apply()(对象,[...函数调用的参数]) 会将fn执行起来
+            fn.bind() 不会执行fn 但是会返回修改之后的参数
+        */
+    /* 数据验证
+        1、typeof 只能检查基本类型
+        2、instancof 检查是否为指定类的实例对象 检查父类也是真
+    */
+   /*JSON格式
+            JSON格式是一个字符串格式 与数组对象类似
+            JSON.parse() 将JSON格式的字符串转化为内置数据类型
+            JSON.stringify 将内置数据类型转化为JSON格式            
+    */
+   /* 深浅复制
+            
+   */
+    </script>
+</body>
+</html>

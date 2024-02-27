@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+            对象名只能用字符串
+            用其他数据类型会自动先转toString
+        */
+       /* 
+            Map结构就是用于解决对象属性只能用字符串类型
+            创建 Map 参数需要传递二维数组 第一维每一个元素
+            第二维第一个表示键名 第二维第二个表示键值
+       */
+      let a = 'a';
+      let m = new Map([
+        [a,1],
+        ['b','2']
+      ])
+      
+      //添加值 存在就修改 不存在就添加 set
+      m.set('c',2)
+      //查看容量    size
+      console.log(m.size);
+      //获取 get
+      console.log(m.get(a));
+      //遍历 forEach
+      console.log(m);
+    </script>
+</body>
+</html>

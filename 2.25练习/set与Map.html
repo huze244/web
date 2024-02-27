@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        数组可以存一类相同的数据 表示一种集合 按照数学中集合应该是不重复的
+        set 属于一种唯一不重复的数据结构 与数组类似
+        */
+        /* 
+            创建set 使用new 语法 传递数组 数组中每一个元素表示集合中的值
+        */
+        let s = new Set()
+        console.log(s);
+        /* 
+            添加集合元素 add    //
+        */
+        s.add('a')
+       /* 
+            查看集合容量 size    //属性
+        */
+        s.size
+        /* 
+            检查值是否存在 has()  //方法传想检查值，返回boolean
+        */
+        s.has('a')
+        /* 
+            set的遍历 
+        */
+       /* 
+            使用set实现数组去重
+       */
+      let a = [...new Set([1, 2, 3, 5,3 ,2])]
+      console.log(a);
+    </script>
+</body>
+</html>
