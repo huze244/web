@@ -12,7 +12,7 @@
             width: 100px;
             height: 100px;
             position: absolute;
-            left: 300px;
+            left: 0px;
             top: 0
         }
     </style>
@@ -20,7 +20,7 @@
     <script type="module">
         import fn from './index.js'
         document.querySelector('div').addEventListener('click', function () {
-            fn(this,{left:0,top:400})
+            fn(this,{top:400,opacity:0.5},()=>{fn(document.querySelector('div'),{left:400,opacity:1})})
         })
     </script>
      
