@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .middlebox{
+            width: 500px;
+            height: 500px;
+            position: absolute;
+            left: 100px;
+            top: 50px;
+            border: 1px solid black;
+            background: url('');
+        }
+        .smallbox{
+            position: absolute;
+            left: 100px;
+            top: 600px;
+            display: flex;
+        }
+        .smallbox div{
+            border: 1px solid black;
+            width: 50px;
+            height: 50px;
+            margin-left: 20px;
+        }
+        .smallbox .active{
+            border: 3px solid red;
+        }
+        .shadow{
+            width: 100px;
+            height: 100px;
+            opacity: 0.5;
+            background-color: chocolate;
+        }
+    </style>
+    <div class="middlebox">
+        <div class="shadow"></div>
+    </div>
+    <div class="smallbox">
+        <div ><img src="" alt=""></div>
+        <div><img src="" alt=""></div>
+    </div>
+    <script>
+        /* 
+            1、小图的点击切换 实现中图与大图改变
+            2、实现中图的拖拽效果
+            3、在中图拖拽效果中实现大图的跟随
+        */      
+        /* 
+            1、使用事件委托
+            点击小图时触发事件，对事件源操作，去除原来active的样式，给现在点击的添加样式
+            将中图的图片地址修改为小图的图片地址
+            2、鼠标移入时显示遮罩与大图，移出将移入事件清除，并隐藏遮罩与大图
+            在鼠标移入事件中添加鼠标移动事件，获取鼠标坐标点(相对于大图位置)
+            在遮罩加事件时 中图也会触发 可防止触发一个 或者 计算值使两个事件的值相等
+            
+            以相对页面偏移量为标准
+            限制边界
+        */
+        let smallbox = document.querySelector('.smallbox')
+        console.log(smallbox);
+        
+        smallbox.addEventListener('click',function(e){
+            console.log(e.target);
+            
+            e.target.classList.toggle('active')
+        })
+    </script>
+</body>
+</html>
