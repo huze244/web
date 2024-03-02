@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Car(brand){
+            this.brand = brand;
+        }
+        console.log(Car.prototype);
+        console.log(Car.prototype.constructor == Car);
+        Car.prototype.luntai = 4;
+        let s = new Car('奔驰')
+        console.log(s.luntai);
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="snake.css">
+</head>
+
+<body>
+    <script>
+      function snakeMap(width,height,Xcellnumber,Ycellnumber){
+        this.width = width;
+        this.height = height;
+        this.Xcellnumber = Xcellnumber;
+        this.Ycellnumber = Ycellnumber;
+        this.mapDom = null;
+      }
+      snakeMap.prototype.init = function(){
+        this.mapDom = document.createElement('div')
+        this.mapDom.style.width = this.width * this.Xcellnumber
+        this.mapDom.style.height = this.height * this.Ycellnumber
+        document.querySelector('body').appendChild(this.mapDom)
+        this.mapDom.classList.add('map')
+      }
+      let map = new snakeMap(10,10,20,20)
+      map.init()
+      function Food(map){
+        this.map = map
+        this.food = null;   
+      }
+      Food.prototype.init = function(){
+        this.food = document.createElement('div')
+        this.map.mapDom.appendChild(this.food)
+        this.food.classList.add('food')
+        this.food.width = this.map.mapDom.width;
+        this.food.height = this.map.mapDom.height;
+        this.food.style.left =this.map.width*Math.floor(Math.random()*this.map.Xcellnumber) + 'px';
+        this.food.style.top = this.map.height*Math.floor(Math.random()*this.map.Ycellnumber) + 'px';
+      }
+      let food = new Food();
+      food.init()
+      
+      function Snake(map){
+        if(!(map instanceof snakeMap)){
+          throw new Error('缺少食物对象')
+        }
+        this.map = map
+      }
+      let snake = new Snake(map)
+      
+    </script>
+</body>
+
+</html>
