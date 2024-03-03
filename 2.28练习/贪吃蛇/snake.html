@@ -19,36 +19,134 @@
       }
       snakeMap.prototype.init = function(){
         this.mapDom = document.createElement('div')
-        this.mapDom.style.width = this.width * this.Xcellnumber
-        this.mapDom.style.height = this.height * this.Ycellnumber
+        this.mapDom.style.width = this.width * this.Xcellnumber +'px'
+        this.mapDom.style.height = this.height * this.Ycellnumber +'px'
         document.querySelector('body').appendChild(this.mapDom)
         this.mapDom.classList.add('map')
       }
-      let map = new snakeMap(10,10,20,20)
+      let map = new snakeMap(20,20,20,20)
       map.init()
       function Food(map){
-        this.map = map
-        this.food = null;   
-      }
-      Food.prototype.init = function(){
-        this.food = document.createElement('div')
-        this.map.mapDom.appendChild(this.food)
-        this.food.classList.add('food')
-        this.food.width = this.map.mapDom.width;
-        this.food.height = this.map.mapDom.height;
-        this.food.style.left =this.map.width*Math.floor(Math.random()*this.map.Xcellnumber) + 'px';
-        this.food.style.top = this.map.height*Math.floor(Math.random()*this.map.Ycellnumber) + 'px';
-      }
-      let food = new Food();
-      food.init()
-      
-      function Snake(map){
         if(!(map instanceof snakeMap)){
-          throw new Error('缺少食物对象')
+          throw new Error('食物的创建需要依赖于地图')
         }
         this.map = map
+        this.food = null;
+        this.foodDom = null;
+        this.position = {x:0,y:0};   
       }
-      let snake = new Snake(map)
+      Food.prototype.init = function(){
+        if(this.foodDom == null){
+        this.foodDom = document.createElement('div')
+        this.foodDom.classList.add('food')
+        this.map.mapDom.appendChild(this.foodDom)
+        }
+        let left = this.map.width*(Math.floor(Math.random()*this.map.Xcellnumber))
+        let top = this.map.height*(Math.floor(Math.random()*this.map.Ycellnumber))
+        this.position.x = left/this.map.width;
+        this.position.y = top/this.map.height;
+        this.foodDom.width = this.map.mapDom.width;
+        this.foodDom.height = this.map.mapDom.height;
+        this.foodDom.style.left = left + 'px';
+        this.foodDom.style.top = top + 'px';
+      }
+      let food = new Food(map);
+      food.init()
+      
+      function Snake(food){
+        if(!(food instanceof Food)){
+          throw new Error('缺少食物对象')
+        }
+        this.food = food;
+        this.map = this.food.map
+        this.direct = 'right';
+        this.bodys = [
+          {x:2,y:0,backgroundImage:'imgs/head.png',dom:null},
+          {x:1,y:0,backgroundImage:'imgs/body.png',dom:null},
+          {x:0,y:0,backgroundImage:'imgs/body.png',dom:null}
+        ]
+        this.headerx = this.bodys[0].x
+        this.headery = this.bodys[0].y
+      }
+      Snake.prototype.show = function(){
+        this.bodys.forEach( node =>{
+          if(!node.dom){
+          node.dom = document.createElement('div')   
+          node.dom.className = 'snake';       
+          this.map.mapDom.appendChild(node.dom)
+        }        
+        if(food.position.x==this.bodys[0].x&&food.position.y==this.bodys[0].y){
+          //蛇增加一节
+          let lastIndex = this.bodys.length-1;
+          this.bodys.push(
+            {
+              x:this.bodys[lastIndex].x,
+              y:this.bodys[lastIndex].y,
+              backgroundImage:this.bodys[lastIndex].backgroundImage,
+              dom:null
+            }
+          )
+          //食物重置
+          food.init()
+        }
+          node.dom.style.left = node.x*this.map.width + 'px'
+          node.dom.style.top = node.y*this.map.height + 'px'
+          node.dom.style.backgroundImage = `url(${node.backgroundImage})`
+        }
+        )
+        this.headerx = this.bodys[0].x
+        this.headery = this.bodys[0].y
+        if(this.headerx < 0 || this.headery < 0 || this.headerx >= this.map.Xcellnumber || this.headery>=this.map.Ycellnumber){
+          console.log(this.map.Xcellnumber,this.headerx,this.headery,this.map.Ycellnumber);
+          alert('game over')
+          clearInterval(timer)
+        }else{
+
+        }
+      }
+      Snake.prototype.move = function(){
+        for(let i = this.bodys.length - 1;i>0;i--){
+          this.bodys[i].x = this.bodys[i-1].x;
+          this.bodys[i].y = this.bodys[i-1].y;
+        }
+          switch(this.direct) {
+            case 'right':
+              this.bodys[0].x++;
+                break;
+            case 'left':
+              this.bodys[0].x--;
+                break;
+            case 'up':
+              this.bodys[0].y--;
+                break;
+            case 'down':
+              this.bodys[0].y++;
+          }
+          this.show()
+      }
+      let timer = setInterval(function(){
+        snake.move()
+      },200)
+      document.onkeydown = event =>{
+          switch (event.keyCode) {
+            case 37:
+              snake.direct = 'left'
+              break;
+            case 38:
+              snake.direct = 'up'
+              break;
+            case 39:
+              snake.direct = 'right'
+              break;
+            case 40:
+              snake.direct = 'down'
+              break;
+            default:
+              break;
+          }
+      }
+      let snake = new Snake(food)
+      snake.show()
       
     </script>
 </body>
