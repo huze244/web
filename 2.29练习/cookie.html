@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 设置cookie cookie属于键值对的格式(名称与值对应)
+        // 语法document.cookie="名称=值;path=/;expires=有效时间"
+        // 1、设置不带有效时间
+        // document.cookie = "nickname=曹阿瞒;path=/"
+        // 2、设置带有效时间 设置的有效时间表示的是过期的时间，该时间不能使用北京时间 一定要使用格林威治时间
+        let d = new Date()
+        //d.setTime(d.getTime()+3600*1000-8*3600*1000)
+        d.setTime(d.getTime()+30*1000)//getTime 获取1970年1月1日至今毫秒往后延迟30s
+        //依照毫秒数设置Date对象
+        console.log(d);
+        document.cookie = 'userid=110;path=/;expires='+d.toUTCString();
+    </script>
+</body>
+</html>
